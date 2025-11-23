@@ -1,235 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:background="#FFFFFF">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:layout_marginTop="80dp"
+        android:paddingBottom="8dp">
+        <ImageView android:id="@+id/imgLogo" android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_play_logo" app:tint="@color/colorAccent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+        <androidx.cardview.widget.CardView android:id="@+id/cardAvatar" android:layout_width="32dp" android:layout_height="32dp" app:cardCornerRadius="16dp" app:cardBackgroundColor="@android:color/holo_blue_light" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="V" android:gravity="center" android:textColor="#FFFFFF" android:textStyle="bold"/>
+        </androidx.cardview.widget.CardView>
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp" app:layout_constraintEnd_toStartOf="@id/cardAvatar" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_notification" />
+            <TextView android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/ic_launcher_background" android:backgroundTint="#D93025" android:text="1" android:textColor="#FFFFFF" android:textSize="10sp" android:gravity="center" android:layout_gravity="top|end"/>
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Header -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#6C35E8"
-            android:text="My Application"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:padding="16dp" />
-
-        <!-- Form Content -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginEnd="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="First Name"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="4dp" />
-
-                    <EditText
-                        android:id="@+id/editTextFirstName"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:hint="First Name"
-                        android:inputType="textPersonName"
-                        android:background="@android:drawable/edit_text"
-                        android:padding="12dp"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Last Name"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="4dp" />
-
-                    <EditText
-                        android:id="@+id/editTextLastName"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:hint="Last Name"
-                        android:inputType="textPersonName"
-                        android:background="@android:drawable/edit_text"
-                        android:padding="12dp"
-                        android:textSize="14sp" />
-                </LinearLayout>
+    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none" android:paddingStart="8dp">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="12dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="For you" android:textColor="#018786" android:textStyle="bold" android:textSize="16sp" android:paddingVertical="12dp"/>
+                <View android:layout_width="match_parent" android:layout_height="3dp" android:background="#018786" app:layout_constraintBottom_toBottomOf="parent"/>
             </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Top charts" android:textSize="16sp" android:textColor="#5F6368" android:padding="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Other devices" android:textSize="16sp" android:textColor="#5F6368" android:padding="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kids" android:textSize="16sp" android:textColor="#5F6368" android:padding="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Premium" android:textSize="16sp" android:textColor="#5F6368" android:padding="12dp"/>
+        </LinearLayout>
+    </HorizontalScrollView>
 
-            <TextView
-                android:id="@+id/textViewGenderLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Gender"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E0E0E0"/>
 
-            <RadioGroup
-                android:id="@+id/radioGroupGender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp"/>
 
-                <RadioButton
-                    android:id="@+id/radioButtonMale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male"
-                    android:textSize="14sp" />
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E0E0E0"/>
 
-                <RadioButton
-                    android:id="@+id/radioButtonFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="Female"
-                    android:textSize="14sp" />
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Birthday"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <EditText
-                    android:id="@+id/editTextBirthday"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
-                    android:hint="Birthday"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:background="@android:drawable/edit_text"
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <Button
-                    android:id="@+id/buttonSelectDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:text="SELECT"
-                    android:textSize="12sp"
-                    android:textColor="#FFFFFF"
-                    android:background="#6C35E8"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp" />
-            </LinearLayout>
-
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Address"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editTextAddress"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="8dp"
-                android:hint="Address"
-                android:inputType="textMultiLine"
-                android:gravity="top|start"
-                android:background="@android:drawable/edit_text"
-                android:padding="12dp"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Email"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/editTextEmail"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:background="@android:drawable/edit_text"
-                android:padding="12dp"
-                android:textSize="14sp" />
-
-            <CheckBox
-                android:id="@+id/checkBoxTerms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="I agree to terms of Use"
-                android:textSize="14sp" />
-
-            <Button
-                android:id="@+id/buttonRegister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="REGISTER"
-                android:textSize="16sp"
-                android:textColor="#FFFFFF"
-                android:background="#6C35E8"
-                android:padding="16dp" />
-
+    <LinearLayout android:layout_width="match_parent" android:layout_height="80dp" android:orientation="horizontal" android:background="#F0F3F8" android:paddingTop="12dp" android:paddingBottom="16dp" android:baselineAligned="false">
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <ImageView android:layout_width="64dp" android:layout_height="32dp" android:src="@drawable/ic_nav_games" android:scaleType="centerInside"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Games" android:textSize="12sp" android:textColor="#5F6368" android:textStyle="bold" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <ImageView android:layout_width="64dp" android:layout_height="32dp" android:src="@drawable/ic_nav_apps" android:background="@drawable/bg_nav_selected" android:scaleType="centerInside" android:padding="4dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Apps" android:textSize="12sp" android:textColor="#001d35" android:textStyle="bold" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <ImageView android:layout_width="64dp" android:layout_height="32dp" android:src="@drawable/ic_nav_search" android:scaleType="centerInside"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Search" android:textSize="12sp" android:textColor="#5F6368" android:textStyle="bold" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+            <ImageView android:layout_width="64dp" android:layout_height="32dp" android:src="@drawable/ic_nav_books" android:scaleType="centerInside"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Books" android:textSize="12sp" android:textColor="#5F6368" android:textStyle="bold" android:layout_marginTop="4dp"/>
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

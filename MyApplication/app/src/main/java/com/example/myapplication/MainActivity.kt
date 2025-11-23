@@ -1,146 +1,42 @@
-package com.example.myapplication // Thay thế bằng tên package của bạn
+package com.example.myapplication
 
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.View
-import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-
-    // Khai báo các View (Đối tượng giao diện)
-    private lateinit var editTextFirstName: EditText
-    private lateinit var editTextLastName: EditText
-    private lateinit var radioGroupGender: RadioGroup
-    private lateinit var editTextBirthday: EditText
-    private lateinit var buttonSelectDate: Button
-    private lateinit var calendarView: CalendarView
-    private lateinit var editTextAddress: EditText
-    private lateinit var editTextEmail: EditText
-    private lateinit var checkBoxTerms: CheckBox
-    private lateinit var buttonRegister: Button
-
-    // Biến để lưu màu nền mặc định
-    private var defaultEditTextBackground: Drawable? = null
-    private var defaultLabelColor: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Khởi tạo các View
-        editTextFirstName = findViewById(R.id.editTextFirstName)
-        editTextLastName = findViewById(R.id.editTextLastName)
-        radioGroupGender = findViewById(R.id.radioGroupGender)
-        editTextBirthday = findViewById(R.id.editTextBirthday)
-        buttonSelectDate = findViewById(R.id.buttonSelectDate)
-        calendarView = findViewById(R.id.calendarView)
-        editTextAddress = findViewById(R.id.editTextAddress)
-        editTextEmail = findViewById(R.id.editTextEmail)
-        checkBoxTerms = findViewById(R.id.checkBoxTerms)
-        buttonRegister = findViewById(R.id.buttonRegister)
+        // 1. Dữ liệu mẫu
+        val suggestedApps = listOf(
+            AppItem(1, "Mech Assemble: Zombie", "Action • Roguelike", ""),
+            AppItem(2, "MU: Hỏa Long Đao", "Role Playing", ""),
+            AppItem(3, "War Inc: Rising", "Strategy", ""),
+        )
 
-        // Lưu lại màu nền mặc định để reset khi hợp lệ
-        defaultEditTextBackground = editTextFirstName.background
-        defaultLabelColor = checkBoxTerms.textColors.defaultColor
+        val recommendedApps = listOf(
+            AppItem(6, "Suno AI", "Music", "#FF5722"), // Cam
+            AppItem(7, "Claude", "AI Chat", "#D7CCC8"), // Nâu
+            AppItem(8, "DramaBox", "Movies", "#E91E63"),
+            AppItem(8, "DramaBox", "Movies", "#E91E63")// Hồng
+        )
 
-        // --- Xử lý Yêu cầu 1: Ẩn/hiện CalendarView ---
-        buttonSelectDate.setOnClickListener {
-            if (calendarView.visibility == View.GONE) {
-                calendarView.visibility = View.VISIBLE
-            } else {
-                calendarView.visibility = View.GONE
-            }
-        }
+        // 2. Tạo danh sách Section với Type tương ứng
+        val sections = listOf(
+            // Mục 1: Dọc (TYPE_VERTICAL) -> Sẽ dùng layout 3 dòng
+            SectionItem("Sponsored • Suggested for you", suggestedApps, SectionItem.TYPE_VERTICAL),
 
-        // Xử lý khi người dùng chọn ngày trên CalendarView
-        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            // (month bắt đầu từ 0, nên cần +1)
-            val selectedDate = "$dayOfMonth/${month + 1}/$year"
-            editTextBirthday.setText(selectedDate)
-            calendarView.visibility = View.GONE // Tự động ẩn sau khi chọn
-        }
+            // Mục 2: Ngang (TYPE_HORIZONTAL) -> Sẽ dùng layout ô vuông
+            SectionItem("Recommended for you", recommendedApps, SectionItem.TYPE_HORIZONTAL)
+        )
 
-        // --- Xử lý Yêu cầu 2: Kiểm tra khi nhấn Register ---
-        buttonRegister.setOnClickListener {
-            if (validateForm()) {
-                // Nếu tất cả hợp lệ
-                Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
-            } else {
-                // Nếu có lỗi
-                Toast.makeText(this, "Please fill all required fields.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    /**
-     * Hàm kiểm tra toàn bộ form.
-     * Trả về true nếu hợp lệ, false nếu có lỗi.
-     * Sẽ đổi màu nền các trường bị lỗi thành màu đỏ.
-     */
-    private fun validateForm(): Boolean {
-        var isValid = true
-
-        // 1. Kiểm tra First Name
-        if (editTextFirstName.text.isBlank()) {
-            editTextFirstName.setBackgroundColor(Color.RED)
-            isValid = false
-        } else {
-            editTextFirstName.background = defaultEditTextBackground
-        }
-
-        // 2. Kiểm tra Last Name
-        if (editTextLastName.text.isBlank()) {
-            editTextLastName.setBackgroundColor(Color.RED)
-            isValid = false
-        } else {
-            editTextLastName.background = defaultEditTextBackground
-        }
-
-        // 3. Kiểm tra Gender
-        val genderLabel = findViewById<TextView>(R.id.textViewGenderLabel)
-        if (radioGroupGender.checkedRadioButtonId == -1) {
-            // Đổi màu chữ của label "Gender"
-            genderLabel.setTextColor(Color.RED)
-            isValid = false
-        } else {
-            genderLabel.setTextColor(defaultLabelColor)
-        }
-
-        // 4. Kiểm tra Birthday
-        if (editTextBirthday.text.isBlank()) {
-            editTextBirthday.setBackgroundColor(Color.RED)
-            isValid = false
-        } else {
-            editTextBirthday.background = defaultEditTextBackground
-        }
-
-        // 5. Kiểm tra Address
-        if (editTextAddress.text.isBlank()) {
-            editTextAddress.setBackgroundColor(Color.RED)
-            isValid = false
-        } else {
-            editTextAddress.background = defaultEditTextBackground
-        }
-
-        // 6. Kiểm tra Email
-        if (editTextEmail.text.isBlank()) {
-            editTextEmail.setBackgroundColor(Color.RED)
-            isValid = false
-        } else {
-            editTextEmail.background = defaultEditTextBackground
-        }
-
-        // 7. Kiểm tra Terms of Use
-        if (!checkBoxTerms.isChecked) {
-            // Đổi màu chữ của CheckBox
-            checkBoxTerms.setTextColor(Color.RED)
-            isValid = false
-        } else {
-            checkBoxTerms.setTextColor(defaultLabelColor)
-        }
-
-        return isValid
+        // 3. Setup RecyclerView Chính
+        val rvMain = findViewById<RecyclerView>(R.id.rvMain)
+        rvMain.layoutManager = LinearLayoutManager(this) // Cuộn dọc toàn màn hình
+        rvMain.adapter = SectionAdapter(sections)
     }
 }
